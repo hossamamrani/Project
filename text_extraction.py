@@ -17,8 +17,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 ocr = PaddleOCR(
     use_textline_orientation=True,
     lang="fr",
-    show_log=False
-)
+    show_log=False)
 
 # =====================================================
 # 2) UTILS
