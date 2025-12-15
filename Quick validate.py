@@ -1,8 +1,3 @@
-"""
-SIMPLEST - Test First Image
-One command to see your model's prediction on the first test image
-"""
-
 from ultralytics import YOLO
 from pathlib import Path
 
@@ -21,7 +16,7 @@ model = YOLO(MODEL)
 results = model.predict(first_image, save=True, conf=0.25)
 
 # Show info
-print(f"\n✓ Tested: {first_image.name}")
-print(f"✓ Detections: {len(results[0].boxes)} person(s)")
-print(f"✓ Saved to: runs/pose/predict/{first_image.name}")
+print(f"\n Tested: {first_image.name}")
+print(f" Detections: {len(results[0].boxes)} person(s)")
+print(f" Saved to: runs/pose/predict/{first_image.name}")
 print(f"\nOpen that file to see the annotated image!")
