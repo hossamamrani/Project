@@ -11,6 +11,9 @@ Presentation Attack Detection aims to distinguish between **genuine document pre
 
 The project focuses on building a reliable pipeline that supports PAD research by enabling robust document analysis under different acquisition conditions. This work serves as a foundation for developing, evaluating, and improving PAD models for document security applications.
 
+In practical applications, this work is directly relevant to **Know Your Customer (KYC)** processes, where identity documents are captured remotely during onboarding. By integrating PAD mechanisms, such systems can better prevent fraud attempts involving spoofed or recaptured documents, thereby improving the security and reliability of digital identity verification workflows.
+
+
 ---
 
 ## 📊 Dataset Source
