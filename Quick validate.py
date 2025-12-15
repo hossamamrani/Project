@@ -1,8 +1,3 @@
-"""
-SIMPLEST - Test First Image
-One command to see your model's prediction on the first test image
-"""
-
 from ultralytics import YOLO
 from pathlib import Path
 
