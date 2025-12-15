@@ -52,7 +52,7 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
     json_file = json_files[folder_idx]
     folder_name = json_file.stem
     
-    print(f"🔍 Checking: {country}/{folder_name}")
+    print(f" Checking: {country}/{folder_name}")
     
     # Load annotation (VIA format)
     with open(json_file, 'r', encoding='utf-8') as f:
@@ -402,4 +402,4 @@ if __name__ == "__main__":
         num_images = int(input("Number of images per folder [default: 3]: ") or "3")
         quick_check_serbian(BASE_PATH, num_folders, num_images)
     else:
-        print("❌ Invalid choice")
+        print("Invalid choice")
