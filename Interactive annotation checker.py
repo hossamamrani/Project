@@ -42,11 +42,11 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
     json_files = sorted(list(annotation_dir.glob("*.json")))
     
     if not json_files:
-        print(f"❌ No JSON files found in {annotation_dir}")
+        print(f" No JSON files found in {annotation_dir}")
         return None
     
     if folder_idx >= len(json_files):
-        print(f"❌ Folder index {folder_idx} out of range. Max: {len(json_files)-1}")
+        print(f" Folder index {folder_idx} out of range. Max: {len(json_files)-1}")
         return None
     
     json_file = json_files[folder_idx]
@@ -62,7 +62,7 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
     annotations = data.get('_via_img_metadata', {})
     
     if not annotations:
-        print(f"⚠️  No _via_img_metadata found in {json_file.name}")
+        print(f"  No _via_img_metadata found in {json_file.name}")
         return None
     
     # Get image files
@@ -70,11 +70,11 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
     img_files = sorted(list(img_folder.glob("*.jpg")) + list(img_folder.glob("*.png")))
     
     if not img_files:
-        print(f"❌ No images found in {img_folder}")
+        print(f" No images found in {img_folder}")
         return None
     
     if img_idx >= len(img_files):
-        print(f"❌ Image index {img_idx} out of range. Max: {len(img_files)-1}")
+        print(f" Image index {img_idx} out of range. Max: {len(img_files)-1}")
         return None
     
     img_path = img_files[img_idx]
@@ -106,13 +106,13 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
             break
     
     if not annotation_found:
-        print(f"❌ No annotation found for {img_path.name}")
+        print(f" No annotation found for {img_path.name}")
         return None
     
     # Visualize
     img = cv2.imread(str(img_path))
     if img is None:
-        print(f"❌ Cannot read image: {img_path}")
+        print(f" Cannot read image: {img_path}")
         return None
     
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -143,11 +143,11 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
         _, _, rect_w, rect_h = rect
         aspect_ratio = rect_w / rect_h if rect_h > 0 else 0
         
-        info_text = f"📄 Image: {img_path.name}\n"
-        info_text += f"📐 Size: {img.shape[1]}×{img.shape[0]} pixels\n"
-        info_text += f"🔷 Polygon vertices: {len(points)}\n"
-        info_text += f"📊 Document area: {area_percentage:.1f}% of image\n"
-        info_text += f"📏 Aspect ratio: {aspect_ratio:.2f}"
+        info_text = f"Image: {img_path.name}\n"
+        info_text += f"Size: {img.shape[1]}×{img.shape[0]} pixels\n"
+        info_text += f"Polygon vertices: {len(points)}\n"
+        info_text += f"Document area: {area_percentage:.1f}% of image\n"
+        info_text += f"Aspect ratio: {aspect_ratio:.2f}"
         
         ax.text(20, 50, info_text, 
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='black', linewidth=2),
@@ -155,16 +155,16 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
         
         ax.legend(loc='upper right', fontsize=12)
         
-        status_text = "✅ ANNOTATION FOUND"
+        status_text = "ANNOTATION FOUND"
         status_color = 'green'
     else:
         ax.text(img.shape[1]//2, img.shape[0]//2, 
-               '❌ NO ANNOTATION FOUND', 
+               'NO ANNOTATION FOUND', 
                ha='center', va='center', color='red', fontsize=24,
                fontweight='bold',
                bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.9, edgecolor='red', linewidth=3))
         
-        status_text = "❌ NO ANNOTATION"
+        status_text = "NO ANNOTATION"
         status_color = 'red'
     
     ax.set_title(f"{country} / {folder_name} / {img_path.name}\n{status_text}", 
@@ -181,7 +181,7 @@ def check_single_annotation(base_path, country="srb_passport", folder_idx=0, img
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
     plt.close(fig)
     
-    print(f"✅ Saved visualization: {output_path}")
+    print(f"Saved visualization: {output_path}")
     
     return output_path
 
@@ -198,7 +198,7 @@ def quick_check_serbian(base_path, num_folders=3, num_images=3, output_dir=None)
         output_dir: Where to save output images
     """
     print("\n" + "="*70)
-    print("⚡ QUICK CHECK - Serbian Passport Annotations")
+    print("QUICK CHECK - Serbian Passport Annotations")
     print("="*70)
     print(f"Checking first {num_images} images from first {num_folders} folders...")
     print(f"Visualizations will be saved to: {output_dir or Path(base_path) / 'annotation_checks'}\n")
@@ -215,7 +215,7 @@ def quick_check_serbian(base_path, num_folders=3, num_images=3, output_dir=None)
     json_files = sorted(list(annotation_dir.glob("*.json")))
     
     if not json_files:
-        print("❌ No annotation files found for Serbian passports")
+        print("No annotation files found for Serbian passports")
         return
     
     total_checked = 0
@@ -229,10 +229,10 @@ def quick_check_serbian(base_path, num_folders=3, num_images=3, output_dir=None)
         img_count = len(list(img_folder.glob("*.jpg")) + list(img_folder.glob("*.png")))
         total_images = min(num_images, img_count)
         
-        print(f"\n📂 Folder {folder_idx+1}/{total_folders}: {folder_name} ({img_count} images)")
+        print(f"\n Folder {folder_idx+1}/{total_folders}: {folder_name} ({img_count} images)")
         
         for img_idx in range(total_images):
-            print(f"   🖼️  Image {img_idx+1}/{total_images}", end=" ")
+            print(f"     Image {img_idx+1}/{total_images}", end=" ")
             result = check_single_annotation(base_path, "srb_passport", folder_idx, img_idx, output_dir)
             
             if result:
@@ -240,9 +240,9 @@ def quick_check_serbian(base_path, num_folders=3, num_images=3, output_dir=None)
                 total_checked += 1
     
     print(f"\n" + "="*70)
-    print(f"✅ Quick check completed!")
-    print(f"📊 Total images checked: {total_checked}")
-    print(f"💾 Saved {len(saved_files)} visualizations to: {output_dir}")
+    print(f" Quick check completed!")
+    print(f" Total images checked: {total_checked}")
+    print(f" Saved {len(saved_files)} visualizations to: {output_dir}")
     print("="*70)
     
     return saved_files
@@ -271,11 +271,11 @@ def check_random_samples(base_path, country="srb_passport", num_samples=5, outpu
     json_files = sorted(list(annotation_dir.glob("*.json")))
     
     if not json_files:
-        print(f"❌ No annotation files found for {country}")
+        print(f" No annotation files found for {country}")
         return
     
     print("\n" + "="*70)
-    print(f"🎲 RANDOM SAMPLING - {country}")
+    print(f" RANDOM SAMPLING - {country}")
     print("="*70)
     print(f"Checking {num_samples} random images...")
     print(f"Visualizations will be saved to: {output_dir}\n")
@@ -292,15 +292,15 @@ def check_random_samples(base_path, country="srb_passport", num_samples=5, outpu
         if img_files:
             img_idx = random.randint(0, len(img_files) - 1)
             
-            print(f"\n🎯 Sample {i+1}/{num_samples}")
+            print(f"\n Sample {i+1}/{num_samples}")
             result = check_single_annotation(base_path, country, folder_idx, img_idx, output_dir)
             
             if result:
                 saved_files.append(result)
     
     print(f"\n" + "="*70)
-    print(f"✅ Random sampling completed!")
-    print(f"💾 Saved {len(saved_files)} visualizations to: {output_dir}")
+    print(f" Random sampling completed!")
+    print(f" Saved {len(saved_files)} visualizations to: {output_dir}")
     print("="*70)
     
     return saved_files
@@ -327,7 +327,7 @@ def check_specific_images(base_path, country="srb_passport", image_list=None, ou
     output_dir.mkdir(exist_ok=True)
     
     print("\n" + "="*70)
-    print(f"🎯 CHECKING SPECIFIC IMAGES - {country}")
+    print(f" CHECKING SPECIFIC IMAGES - {country}")
     print("="*70)
     print(f"Checking {len(image_list)} specific images...")
     print(f"Visualizations will be saved to: {output_dir}\n")
@@ -335,15 +335,15 @@ def check_specific_images(base_path, country="srb_passport", image_list=None, ou
     saved_files = []
     
     for i, (folder_idx, img_idx) in enumerate(image_list, 1):
-        print(f"\n📍 Image {i}/{len(image_list)}: Folder {folder_idx}, Image {img_idx}")
+        print(f"\n Image {i}/{len(image_list)}: Folder {folder_idx}, Image {img_idx}")
         result = check_single_annotation(base_path, country, folder_idx, img_idx, output_dir)
         
         if result:
             saved_files.append(result)
     
     print(f"\n" + "="*70)
-    print(f"✅ Specific check completed!")
-    print(f"💾 Saved {len(saved_files)} visualizations to: {output_dir}")
+    print(f" Specific check completed!")
+    print(f" Saved {len(saved_files)} visualizations to: {output_dir}")
     print("="*70)
     
     return saved_files
@@ -359,7 +359,7 @@ if __name__ == "__main__":
         BASE_PATH = sys.argv[1]
     
     print("\n" + "="*70)
-    print("🔍 PASSPORT ANNOTATION VERIFICATION TOOL (FILE OUTPUT VERSION)")
+    print(" PASSPORT ANNOTATION VERIFICATION TOOL (FILE OUTPUT VERSION)")
     print("="*70)
     print("All visualizations will be saved as PNG files")
     print()
