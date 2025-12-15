@@ -8,3 +8,5 @@ paddleocr==2.7.0
 ultralytics==8.2.102
 matplotlib==3.10.1
 mediapipe==0.10.21
+pillow==8.4.0
+jsonschema==4.1.0
