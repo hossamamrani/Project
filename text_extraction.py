@@ -78,7 +78,7 @@ def is_city(t):
 # 3) PROCESS ONE IMAGE
 # =====================================================
 def process_image(img_path: Path):
-    print(f"\n📄 Processing: {img_path}")
+    print(f"\n Processing: {img_path}")
 
     results = ocr.ocr(str(img_path))
     if not results or not results[0]:
@@ -129,11 +129,11 @@ def process_image(img_path: Path):
 # =====================================================
 all_images = list(IMAGES_DIR.rglob("*.jpg"))
 
-assert all_images, "❌ No images found"
+assert all_images, " No images found"
 
 BASE_IMAGE = all_images[0]   # image de référence
 
-print(f"\n🧩 Base image selected: {BASE_IMAGE.name}")
+print(f"\n Base image selected: {BASE_IMAGE.name}")
 
 for img in all_images:
     data = process_image(img)
@@ -142,4 +142,4 @@ for img in all_images:
         with open(out, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
-        print(f"✅ Saved → {out.name}")
+        print(f" Saved → {out.name}")
