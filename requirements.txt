@@ -1,0 +1,9 @@
+numpy==1.26.4
+scikit-learn==1.3.2
+protobuf==4.25.3
+shapely==2.0.1
+opencv-python-headless==4.8.1.78
+paddlepaddle==3.0.0
+paddleocr==2.7.0
+ultralytics==8.2.102
+matplotlib==3.10.1
